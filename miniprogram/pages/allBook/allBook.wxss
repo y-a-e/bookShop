@@ -1,0 +1,9 @@
+/* bookList.wxss */
+@import "list/list-template.wxss";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  padding: 0rpx 0rpx;
+  background-color: #eee;
+}
