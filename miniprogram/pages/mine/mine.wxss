@@ -40,3 +40,18 @@ page{
   width: 100%;
   
 }
+.userinfo-avatar{
+  height: 100rpx;
+  width: 100rpx;
+}
+.userinfo-nickname{
+  color: #FB7C58;
+  font-size: 30rpx;
+  margin-left: 40rpx;
+}
+.userinfo-avatar{
+  height: 80rpx;
+  width: 80rpx;
+  margin: 10rpx;
+  border-radius: 40rpx;
+}
