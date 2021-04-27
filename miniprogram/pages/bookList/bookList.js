@@ -16,21 +16,23 @@ Page({
   onLoad: function (options) {
     this.collectionData();
   },
+  // 加载全部的收藏图书
   collectionData: function () {
     collection.get({
       success:res=>{
         var that = this;
-        //console.log("res.data="+res.data);
-        console.log(res.data);
+        //console.log(res.data);
         that.setData({
           bookList: res.data
         })
       }
     })
   },
+  // 跳转图书详情
   toDetail:function(event){
-    console.log(event);
+    // console.log(event);
     var book = event.currentTarget.dataset.book;
+    // 通过将book数据序列化（即json），一并传给新页面
     wx.navigateTo({
       url: '/pages/bookDetail/bookDetail?book='+JSON.stringify(book),
     })

@@ -13,7 +13,7 @@ page{
   background-color: #eee;
 }
 .info-container{
-  height: 160rpx;
+  height: 120rpx;
   width: 100%;
   margin-bottom: 20rpx;
   background-color: #fff;
@@ -38,20 +38,10 @@ page{
 }
 .main-container{
   width: 100%;
-  
 }
-.userinfo-avatar{
-  height: 100rpx;
-  width: 100rpx;
-}
-.userinfo-nickname{
-  color: #FB7C58;
+.btn{
+  background-color: #ff7d0a;
+  color: #ffffff;
   font-size: 30rpx;
   margin-left: 40rpx;
-}
-.userinfo-avatar{
-  height: 80rpx;
-  width: 80rpx;
-  margin: 10rpx;
-  border-radius: 40rpx;
 }

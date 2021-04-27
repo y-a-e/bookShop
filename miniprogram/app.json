@@ -4,7 +4,7 @@
     "pages/bookMall/bookMall",
     "pages/bookShop/bookShop",
     "pages/mine/mine",
-    "pages/mine/login/login",
+    "pages/bookList/bookList",
     "pages/bookDetail/bookDetail",
     "pages/hotPush/hotPush",
     "pages/allBook/allBook"

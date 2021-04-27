@@ -33,10 +33,13 @@ Page({
     this.bannersData();
     this.contentData();
   },
+  //加载轮播图
   bannersData: function () {
     recommend.get({
+      //成功获取数据库recommend，并赋予banners数组
       success:res=>{
         var that = this;
+        //可自行定义局部数组，再将局部数组传值全句数组
         var banners=[];
         for (var i = 0; i < res.data[0].pictureList.picUrl.length; i++){
           var banner={};
@@ -49,10 +52,13 @@ Page({
       },
     })
   },
+  //加载图书
   contentData: function () {
     recommend.get({
+      //成功获取数据库recommend，并赋予goodBookList、hotBookList、newBookList数组
       success:res=>{
         var that = this;
+        //可自行定义局部数组，再将局部数组传值全句数组
         var goodBookList=[];
         var hotBookList=[];
         var newBookList=[];
@@ -85,13 +91,16 @@ Page({
       },
     })
   },
+  // 跳转图书详情
   toDetail:function(event){
     var books = event.currentTarget.dataset.book;
+    //通过将book数据序列化（即json），一并传给新页面
     console.log('/pages/bookDetail/bookDetail?book='+JSON.stringify(books));
     wx.navigateTo({
       url: '/pages/bookDetail/bookDetail?book='+JSON.stringify(books),
     })
   },
+  //菜单栏跳转对应页面
   toPush: function(event){
     var index=event.currentTarget.dataset.index;
     if (index == 0){

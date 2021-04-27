@@ -23,10 +23,13 @@ Page({
   onLoad: function (options) {
     this.contentData();
   },
+  // 加载榜单数据
   contentData: function () {
     ranking.get({
+      //成功获取数据库ranking，并赋予weekhotPush、monthhotPush数组
       success:res=>{
         var that = this;
+        //可自行定义局部数组，再将局部数组传值全句数组
         var weekhotPush=[];
         var monthhotPush=[];
         for (var i = 0; i < res.data[0].month.length; i++){
@@ -50,6 +53,7 @@ Page({
       },
     })
   },
+  // 跳转图书详情
   toDetail: function (event) {
     var book = event.currentTarget.dataset.book;
     wx.navigateTo({

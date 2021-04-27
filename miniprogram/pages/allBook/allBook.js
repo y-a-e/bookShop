@@ -14,12 +14,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var category = JSON.parse(options.category);
-    this.isData(category.categoryName);
+    var category = JSON.parse(options.category);  // 获取传到该页面的category序列化
+    this.isData(category.categoryName); // 点击全部图书，或者某分类图书
     wx.setNavigationBarTitle({
       title: category.categoryName,
     })
   },
+  // 全部图书，或者某分类图书
   isData:function(categoryName){
     if(categoryName == "全部"){
       this.allBookData();
@@ -27,10 +28,13 @@ Page({
       this.BookData(categoryName);
     }
   },
+  // 加载某分类的全部图书
   BookData: function (categoryName) {
     book.get({
+      // 成功获取数据库book，并赋予book数组
       success:res=>{
         var that = this;
+        //可自行定义局部数组，再将局部数组传值全句数组
         var bookList = [];
         for(var i = 0; i < res.data.length; i++){
           var book = {};
@@ -49,6 +53,7 @@ Page({
       }
     })
   },
+  // 加载全部图书
   allBookData: function () {
     book.get({
       success:res=>{
@@ -59,9 +64,10 @@ Page({
       }
     })
   },
-
+  // 跳转图书分类详情
   toDetail:function(event){
     var book = event.currentTarget.dataset.book;
+    // 通过将book数据序列化（即json），一并传给新页面
     wx.navigateTo({
       url: '/pages/bookDetail/bookDetail?book='+JSON.stringify(book),
     })

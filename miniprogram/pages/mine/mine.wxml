@@ -2,28 +2,39 @@
 <import src="cell/cell-template.wxml" />
 
 <view class="mine-container">
-
-  <view class="info-container" catchtap="login">
-    <image class="info-img" src="/images/icon.png"></image>
-    <text class="info-text">点击登录</text>
-  </view>
-
-
-  <view class="info-container">
-    <block wx:if="{{!hasUserInfo}}">
-      <image class="info-img" src="/images/icon.png"></image>
-      <button bindtap="getUserProfile" class="login-button"> 登录 </button>
+  <view  class="userinfo">
+    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
+      <view  class="info-container">
+        <open-data class="info-img" type="userAvatarUrl"></open-data>
+        <open-data class="info-text" type="userNickName"></open-data>
+      </view>
     </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <block wx:else >
+      <view class="info-container" catchtap="login">
+        <image class="info-img" src="/images/icon.png"></image>
+        <text class="info-text"  bindtap="getUserProfile">点击登录</text>
+      </view>
     </block>
   </view>
-
 
   <view class="section-container" wx:for="{{datas}}" wx:for-item="data">
     <view class="main-container" wx:for="{{data}}" catchtap="toMine" data-item="{{item}}">
       <template is="mine" data="{{...item}}"></template>
     </view>
   </view>
+
+  <view  class="userinfo">
+    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
+      <view class="info-container">
+        <button bindtap="exit" class="btn">退出</button>
+      </view>
+    </block>
+    <block wx:else >
+      <view class="info-container" catchtap="login">
+        <button bindtap="getUserProfile" class="btn"> 登录 </button>
+      </view>
+    </block>
+  </view>
+  
+  
 </view>

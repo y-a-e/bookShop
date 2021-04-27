@@ -18,9 +18,11 @@ Page({
     this.requestData();
   },
   requestData:function(){
+    // 成功获取数据库categoty，并赋予categories数组
     categoty.get({
       success:res=>{
         var that = this;
+        //可自行定义局部数组，再将局部数组传值全句数组
         var categories=[];
         for (var i = 0; i < res.data[0].name.length; i++){
           var category={};
@@ -38,9 +40,11 @@ Page({
       }
     })
   },
+  // 跳转图书分类详情
   toBookList: function(event){
     var categoryId = event.currentTarget.dataset.categoryid;
     var categoryName = event.currentTarget.dataset.categoryname;
+    // 通过将category数据序列化（即json），一并传给新页面
     wx.navigateTo({
       url: '/pages/allBook/allBook?category={"categoryId":"' + categoryId + '","categoryName":"' + categoryName+'"}',
     })

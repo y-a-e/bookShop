@@ -108,6 +108,18 @@ Page({
     this.sum();
   },
   bindCheckout: function() {
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+        if (res.authSetting['scope.userInfo']) {
+          console.log('已授权')
+          return false;
+        } else {
+          console.log('没授权')
+          return false;
+        }
+      }
+    })
     // 初始化toastStr字符串
     var toastStr = '_id:';
     var nameStr = '结算书籍:';

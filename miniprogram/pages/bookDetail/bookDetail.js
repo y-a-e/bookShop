@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var book=JSON.parse(options.book);
+    var book=JSON.parse(options.book);//获取传到该页面的book序列化
     var title = book.name;
     this.content(book._id);
     wx.setNavigationBarTitle({
@@ -26,9 +26,12 @@ Page({
   },
   content: function(bookid){
     book.get({
+      // 成功获取book数据库，并加载
       success:res=>{
         var that = this;
         var book = {};
+        // .where方法调用失败，怀疑是不能在.get方法使用，
+        // 因此用for循环阅遍，若id与传给来的序列化中id相等，则输出该书详情
         for(var i = 0; i <res.data.length;i++){
           if(bookid == res.data[i]._id){
             book["_id"] = res.data[i]._id;
@@ -50,9 +53,11 @@ Page({
       },
     })
   },
+  //收藏事件
   addcollection:function(event){
     var bookdetail = event.currentTarget.dataset.bookdetail;
     //console.log(bookdetail);
+    // 若数据库中无，则添加数据。若有，则提醒用户“已收藏”
     collection.add({
       data: bookdetail,
       success:function(){
@@ -71,13 +76,15 @@ Page({
       }
     })
   },
+  //购物车事件
   addbookShop:function(event){
-    //console.log(event);
-    var bookdetail = event.currentTarget.dataset.bookdetail;
-    bookdetail.num = 1;
-    bookdetail.minusStatuses = "normal";
-    bookdetail.selected = false;
-    console.log(bookdetail);
+    var bookdetail = event.currentTarget.dataset.bookdetail; 
+    // console.log(bookdetail);
+    // 若数据库中无，则添加数据。若有，则提醒用户“已加入购物车”，并设置num、minusStatuses、selected默认值
+    bookdetail.num = 1; // 购物书的数量
+    bookdetail.minusStatuses = "normal";  // 购物车最小购物数量是否正常
+    bookdetail.selected = false;  // 是否选中结算
+    //console.log(bookdetail);
     bookShop.add({
       data: bookdetail,
       success:function(){
