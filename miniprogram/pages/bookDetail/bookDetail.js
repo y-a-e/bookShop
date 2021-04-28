@@ -3,6 +3,7 @@ const db = wx.cloud.database();
 const book = db.collection('book');
 const collection = db.collection('collection');
 const bookShop = db.collection('bookShop');
+var app = getApp()
 Page({
 
   /**
@@ -53,8 +54,32 @@ Page({
       },
     })
   },
+  //判断用户是否授权
+  islogin:function(){
+    if(app.globalData.canIUseOpenData) {  //根据全局变量才判断用户是否登录
+      return true;
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '你还未登录',
+        cancelText: '取消',
+        confirmText: '去登录',
+        success: function(res) {
+          if(res.confirm){
+            //这里是右边按钮的跳转链接
+            wx.switchTab({
+              url:  '../mine/mine'
+            })
+          }else{
+            return false;
+          }
+        }
+      })
+    }
+  },
   //收藏事件
   addcollection:function(event){
+    if(!this.islogin()) return;  // 为真则已经登录，为假则未登录
     var bookdetail = event.currentTarget.dataset.bookdetail;
     //console.log(bookdetail);
     // 若数据库中无，则添加数据。若有，则提醒用户“已收藏”

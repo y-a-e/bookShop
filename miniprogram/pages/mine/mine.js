@@ -1,4 +1,5 @@
 // mine.js
+var app = getApp()
 Page({
 
   /**
@@ -18,17 +19,18 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
-    //canIUseOpenData:false
+    canIUseOpenData:app.globalData.canIUseOpenData, //获取用户信息，默认为false
+    //canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
     //canIUseGetUserProfile: false,
   },
+  //菜单栏实现功能
   toMine: function(event){
     var item=event.currentTarget.dataset.item.name;
-    if (item == "我的收藏"){
+    if (item == "我的收藏"){  //点击“我的收藏”跳转/pages/bookList/bookList
       wx.navigateTo({
         url: '/pages/bookList/bookList',
       })
-    }else if(item == "结算记录"){
+    }else if(item == "结算记录"){ //点击“结算记录”跳转/pages/bookShop/bookShop
       wx.switchTab({
         url: '/pages/bookShop/bookShop'
       })
@@ -45,21 +47,26 @@ Page({
       })
     }
   },
+  //用户退出事件处理
   exit(){
     this.setData({
-      canIUseOpenData:false
+      canIUseOpenData:false,
     })
+    app.globalData.canIUseOpenData = false; //将用户信息注销
   },
+  //用户登录事件处理
   getUserProfile() {
     wx.getUserProfile({
       desc: '用于完善会员资料',
-      success: (res) => {
-        //console.log(res);
+      success: (res) => {   
+        //设置用户信息
         this.setData({
           userInfo: res.userInfo,
           canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),
           hasUserInfo: true,
         })
+        //全局声明用户已登录
+        app.globalData.canIUseOpenData = wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'); 
       }
     })
   },
@@ -80,7 +87,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

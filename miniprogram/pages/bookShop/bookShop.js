@@ -1,6 +1,7 @@
 // bookShop.js
 const db = wx.cloud.database();
 const bookShop = db.collection('bookShop');
+var app = getApp()
 Page({
 
   /**
@@ -107,19 +108,34 @@ Page({
 		});
     this.sum();
   },
-  bindCheckout: function() {
-    wx.getSetting({
-      success: (res) => {
-        console.log(res)
-        if (res.authSetting['scope.userInfo']) {
-          console.log('已授权')
-          return false;
-        } else {
-          console.log('没授权')
-          return false;
+  //判断用户是否授权
+  islogin:function(){
+    if(app.globalData.canIUseOpenData) {  //根据全局变量才判断用户是否登录
+      return true;
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '你还未登录',
+        cancelText: '取消',
+        confirmText: '去登录',
+        success: function(res) {
+          if(res.confirm){
+            console.log("app.globalData.canIUseOpenData="+app.globalData.canIUseOpenData);
+            //这里是右边按钮的跳转链接
+            wx.switchTab({
+              url:  '../mine/mine'
+            })
+          }else{
+            console.log("app.globalData.canIUseOpenData="+app.globalData.canIUseOpenData);
+            return false;
+          }
         }
-      }
-    })
+      })
+    }
+  },
+  //结算
+  bindCheckout: function() {
+    if(!this.islogin()) return;  // 为真则已经登录，为假则未登录
     // 初始化toastStr字符串
     var toastStr = '_id:';
     var nameStr = '结算书籍:';
