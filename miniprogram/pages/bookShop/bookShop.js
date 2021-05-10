@@ -120,13 +120,11 @@ Page({
         confirmText: '去登录',
         success: function(res) {
           if(res.confirm){
-            console.log("app.globalData.canIUseOpenData="+app.globalData.canIUseOpenData);
             //这里是右边按钮的跳转链接
             wx.switchTab({
               url:  '../mine/mine'
             })
           }else{
-            console.log("app.globalData.canIUseOpenData="+app.globalData.canIUseOpenData);
             return false;
           }
         }

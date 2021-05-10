@@ -5,7 +5,6 @@
             <text class="list-desc">{{content}}</text>
                 <view class="author-time">
                     <text class="list-author">{{author}}</text>
-                    <text class="list-createtime">{{dateText}}</text>
                 </view>   
       </view>
        <image class="list-img" src="{{imgUrl}}" mode="aspectFit"></image>

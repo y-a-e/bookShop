@@ -19,6 +19,7 @@ Page({
    */
   onLoad: function (options) {
     var book=JSON.parse(options.book);//获取传到该页面的book序列化
+    // console.log(book);
     var title = book.name;
     this.content(book._id);
     wx.setNavigationBarTitle({
@@ -81,7 +82,7 @@ Page({
   addcollection:function(event){
     if(!this.islogin()) return;  // 为真则已经登录，为假则未登录
     var bookdetail = event.currentTarget.dataset.bookdetail;
-    //console.log(bookdetail);
+    // console.log(bookdetail);
     // 若数据库中无，则添加数据。若有，则提醒用户“已收藏”
     collection.add({
       data: bookdetail,
@@ -104,12 +105,11 @@ Page({
   //购物车事件
   addbookShop:function(event){
     var bookdetail = event.currentTarget.dataset.bookdetail; 
-    // console.log(bookdetail);
     // 若数据库中无，则添加数据。若有，则提醒用户“已加入购物车”，并设置num、minusStatuses、selected默认值
     bookdetail.num = 1; // 购物书的数量
     bookdetail.minusStatuses = "normal";  // 购物车最小购物数量是否正常
     bookdetail.selected = false;  // 是否选中结算
-    //console.log(bookdetail);
+    // console.log(bookdetail);
     bookShop.add({
       data: bookdetail,
       success:function(){
