@@ -4,7 +4,7 @@
 <import src="header/header-template.wxml" />
 
 <view class="container">
-  <swiper indicator-dots="{{true}}" indicator-color="#fff" indicator-active-color="#FB7C58">
+  <swiper indicator-dots="{{true}}" indicator-color="#fff" indicator-active-color="#FB7C58" autoplay="true" interval="2500">
     <swiper-item wx:for="{{banners}}" >
       <image class="swiper-image" src="{{item.picUrl}}" mode="scaleToFill"></image>
     </swiper-item>

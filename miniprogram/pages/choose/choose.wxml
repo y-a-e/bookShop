@@ -1,0 +1,11 @@
+<!--miniprogram/pages/choose/choose.wxml-->
+<import src="addre_list/addre_list.wxml" />
+<view class = "item" wx:for="{{list}}"  data-addre="{{item}}">
+  <template is="addre_list" data="{{...item}}"></template>
+</view>
+
+<view class = "add" bindtap = "addAddre">
+  <image  class = "left"src = "/images/address/add_yellow.png" mode = "widthFix" />
+  <view class = "text">新增个人地址</view>
+  <image class="right" src = "/images/address/right.png" mode = "widthFix" />
+</view>

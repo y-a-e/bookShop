@@ -1,0 +1,11 @@
+<!--miniprogram/pages/choose/addre_list/addre_list.wxml-->
+<template name="addre_list">
+  <image src ="{{image}}"  mode = "widthFix"/>
+  <view class = "info">
+    <text>{{name}}，{{tel}}</text>
+    <text  >地址：{{addre}},{{door}}</text>
+  </view>
+  <view class = "modify" bindtap="toModifyAddre"  data-id="{{_id}}"  data-addre="{{addre}}">
+    <image src = "/images/address/modify.png"  mode = "widthFix"/>
+  </view>
+</template>

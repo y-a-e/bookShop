@@ -20,8 +20,6 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseOpenData:app.globalData.canIUseOpenData, //获取用户信息，默认为false
-    //canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
-    //canIUseGetUserProfile: false,
   },
   //菜单栏实现功能
   toMine: function(event){

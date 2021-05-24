@@ -32,9 +32,8 @@
     <text class="content-title">内容简介</text>
     <text class="content-detail">{{bookDetail.content}}</text>
   </view>
-  <!-- catchtap="addcollection"  catchtap="addbookShop" -->
   <view class="bottom">
-    <text class="collect-btn" data-bookDetail="{{bookDetail}}">收藏</text>
-    <text class="push-btn"  data-bookDetail="{{bookDetail}}">加入购物车</text>
+    <text class="collect-btn" catchtap="addcollection" data-bookDetail="{{bookDetail}}">收藏</text>
+    <text class="push-btn" catchtap="addbookShop"  data-bookDetail="{{bookDetail}}">加入购物车</text>
   </view>
 </view>

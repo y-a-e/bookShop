@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -12,14 +13,20 @@
     "miniprogram": {
       "list": [
         {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
-        },
-        {
           "name": "pages/bookDetail/bookDetail",
           "pathName": "pages/bookDetail/bookDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chooseAddre/chooseAddre",
+          "pathName": "pages/chooseAddre/chooseAddre",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/choose/choose",
+          "pathName": "pages/choose/choose",
           "scene": null
         }
       ]
